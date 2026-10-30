@@ -1,10 +1,9 @@
 
 
-## Оновлення v1.1 — free local rewrite cascade
+## Оновлення v1.2 — live model monitor
 
-- [x] Додано `local-models.json` з чотирма open-weight моделями та fallback order.
-- [x] Додано Ollama-compatible adapter без платних API ключів.
-- [x] Додано `GET /api/models/local` і `POST /api/content/rewrite`.
-- [x] Додано frontend action «Покращити локально» для social draft.
-- [x] Adapter передає тільки структурований draft/evidence і завжди встановлює `requires_human_review: true`.
-- [x] При недоступності всіх моделей endpoint повертає контрольовану помилку, не змінюючи чернетку.
+- [x] Додано status endpoint для Ollama gateway та кожної моделі.
+- [x] Додано SSE stream для старту rewrite, model attempt, success, fallback failure і final failure.
+- [x] Додано Browser Studio panel зі статус-картками моделей, connection badge та log feed.
+- [x] Додано auto-refresh status після кожної cascade event і ручну кнопку оновлення.
+- [x] Перевірено safe offline behavior: Ollama offline відображається як OFFLINE, rewrite не змінює чернетку.

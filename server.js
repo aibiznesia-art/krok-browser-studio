@@ -3,7 +3,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { URL } = require('node:url');
 const { REGISTRY, runSkills } = require('./skills/local-skills');
-const { registry: localModelRegistry, models: localModels, baseUrl: localLlmBaseUrl, rewriteLocally } = require('./local-llm');
+const { registry: localModelRegistry, models: localModels, baseUrl: localLlmBaseUrl, rewriteLocally, getModelStatus, events: localLlmEvents, getRecentEvents } = require('./local-llm');
 
 const PORT = Number(process.env.PORT || 3000);
 const ROOT = __dirname;
@@ -152,6 +152,20 @@ const server = http.createServer(async (req, res) => {
   }
   if (req.method === 'GET' && url.pathname === '/api/models/local') {
     send(res, 200, { ok: true, ...localModelRegistry, models: localModelRegistry.models.map((item) => ({ ...item, enabled: localModels.includes(item.id) })), base_url: localLlmBaseUrl, paid_api: false });
+    return;
+  }
+  if (req.method === 'GET' && url.pathname === '/api/models/status') {
+    send(res, 200, { ok: true, ...(await getModelStatus()), token_cost: 0 });
+    return;
+  }
+  if (req.method === 'GET' && url.pathname === '/api/rewrite/events') {
+    res.writeHead(200, { 'Content-Type': 'text/event-stream; charset=utf-8', 'Cache-Control': 'no-cache', Connection: 'keep-alive', 'X-Accel-Buffering': 'no' });
+    const writeEvent = (event) => res.write(`event: ${event.type}\ndata: ${JSON.stringify(event)}\n\n`);
+    getRecentEvents(50).forEach(writeEvent);
+    const onEvent = (event) => writeEvent(event);
+    const keepAlive = setInterval(() => res.write(': ping\n\n'), 15000);
+    localLlmEvents.on('event', onEvent);
+    req.on('close', () => { clearInterval(keepAlive); localLlmEvents.off('event', onEvent); });
     return;
   }
   if (req.method === 'GET' && url.pathname === '/api/skills') {
