@@ -1,0 +1,9 @@
+{
+  "enabled": true,
+  "urls": [],
+  "max_sites": 5,
+  "delay_seconds": 2,
+  "timeout_seconds": 15,
+  "user_agent": "KROK-PublicResearch/1.0 (+public-structural-signals-only)",
+  "notes": "Додавайте лише HTTPS URL, які доступні без входу, CAPTCHA, paywall або обходу robots.txt. Сканер зберігає тільки структурні сигнали: title, description, headings, counts і прості ознаки. Тексти сторінок, cookies, персональні дані та медіа не зберігаються. Hosted API не використовується."
+}

@@ -1,26 +1,17 @@
 
 
-## GitHub Actions: automatic local-skills gate
+## Automatic competitor research without paid APIs
 
-Обидва Pages workflow (`pages.yml` і `generated-content-pages.yml`) запускають `node skills/run-ci.js` перед завантаженням Pages artifact. У звичайному Pages workflow цей крок стоїть після `agents/prepare_seo.py`, тому `robots.txt`, `sitemap.xml` і canonical уже доступні для SEO skill.
+`agents/competitor_scan.py` використовує тільки стандартну Python-бібліотеку. Він перевіряє HTTPS, DNS/IP на private/loopback адреси, `robots.txt`, відсутність redirect і ліміт відповіді. У JSON зберігаються лише структурні сигнали: title, meta description, h1–h3, кількість links/forms/images/scripts і word count. Повний HTML, cookies, медіа та персональні дані не зберігаються.
 
-`skills/run-ci.js` читає `social-sources.json`, передає URL у `source_policy`, запускає шість allowlisted skills і друкує JSON-результат. Якщо хоча б одна навичка повертає `passed: false`, runner завершується з exit code 1, а GitHub Actions не переходить до `upload-pages-artifact` і `deploy-pages`. Ключі API для цього gate не потрібні.
+Налаштування знаходяться у `competitor-sources.json`. Додавайте URL у `urls`, але тільки публічні адреси без входу, CAPTCHA, paywall і обходу robots.txt. Workflow `competitor-research.yml` запускається вручну або щотижня та зберігає evidence як GitHub Actions artifact на 14 днів. `generated-content-pages.yml` додає цей evidence до статичного Pages artifact.
 
-Для нового deploy workflow достатньо додати після підготовки всіх файлів і перед upload/deploy:
-
-```yaml
-- name: Run local skills gate — zero token cost
-  run: node skills/run-ci.js
-```
-
-Якщо workflow генерує SEO-файли пізніше, перенесіть gate після цього кроку. Перевірити локально можна так:
+Команда локального запуску:
 
 ```bash
-COMPANY_NAME='KROK Studio' \
-SITE_SLUG='krok-studio' \
-SITE_ORIGIN='https://owner.github.io/krok-studio/' \
-python3 agents/prepare_seo.py
-node skills/run-ci.js
+python3 agents/competitor_scan.py competitor-sources.json --output artifacts/competitor-research.json
 ```
 
-У GitHub Actions не додавайте до цього кроку `OPENAI_API_KEY`, `BUILT_IN_FORGE_API_KEY` або інші AI secrets: local skills не використовують токени. AI-модель має запускатися окремим кроком лише для задач, де не вистачає детермінованих перевірок.
+Це не скрейпінг для копіювання конкурентів. Дані призначені для порівняння структури й підготовки оригінального сайту з людською перевіркою.
+
+Візуальна схема потоку: `visualized_data/github-actions-competitor-flow.mmd` і PNG-рендер поруч із ним.

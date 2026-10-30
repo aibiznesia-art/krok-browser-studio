@@ -1,0 +1,41 @@
+flowchart TD
+    A[GitHub push / manual run / weekly schedule] --> B[actions/checkout@v4]
+    B --> C{Public-only input policy}
+    C -->|competitor-sources.json| D[HTTPS URL allowlist]
+    D --> E[robots.txt check]
+    E -->|disallow / private / redirect| F[Blocked evidence + no fetch]
+    E -->|allowed| G[stdlib Python scanner]
+    G --> H[Structural signals only\ntitle · meta description · headings\nlinks/forms/images/scripts counts]
+    H --> I[competitor-research.json\nrequires_human_review=true]
+
+    B --> J[Prepare source/content artifacts]
+    J --> K[Generate SEO\nrobots · sitemap · canonical]
+    K --> L[skills/run-ci.js\nlocal-deterministic]
+    L --> L1[HTML validator]
+    L --> L2[Code syntax]
+    L --> L3[Secret scan]
+    L --> L4[SEO readiness]
+    L --> L5[Source policy]
+    L --> L6[Workflow audit]
+    L1 --> M{All required checks PASS?}
+    L2 --> M
+    L3 --> M
+    L4 --> M
+    L5 --> M
+    L6 --> M
+    M -->|No| N[Stop workflow\nno artifact / no deploy]
+    M -->|Yes| O[Optional LLM analysis\nonly if reasoning is needed]
+    I --> O
+    O --> P[Original draft + evidence bundle\nnot copied competitor content]
+    P --> Q[Human review gate]
+    Q -->|approved| R[Build static site artifact]
+    Q -->|rejected| N
+    R --> S[upload-pages-artifact@v3]
+    S --> T[deploy-pages@v4\nfree GitHub Pages]
+
+    classDef safe fill:#18221f,stroke:#c7f36b,color:#f4f4ef;
+    classDef warn fill:#2b2014,stroke:#f0b95c,color:#fff3dc;
+    classDef output fill:#10262b,stroke:#6fe7ef,color:#e9ffff;
+    class B,D,E,G,H,K,L,L1,L2,L3,L4,L5,L6,O,P,Q,R,S,T safe;
+    class C,F,M,N warn;
+    class I,T output;

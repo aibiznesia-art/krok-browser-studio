@@ -1,0 +1,42 @@
+name: Public competitor research
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 5 * * 1'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: competitor-research
+  cancel-in-progress: true
+
+jobs:
+  collect-public-signals:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout research code
+        uses: actions/checkout@v4
+      - name: Run standard-library public-only scanner
+        run: |
+          python3 -m py_compile agents/competitor_scan.py
+          mkdir -p artifacts
+          python3 agents/competitor_scan.py competitor-sources.json --output artifacts/competitor-research.json
+      - name: Print safe research summary
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path('artifacts/competitor-research.json').read_text())
+          collected = sum(item['status'] == 'collected' for item in data['results'])
+          blocked = sum(item['status'] == 'blocked' for item in data['results'])
+          print(f"collected={collected} blocked={blocked} paid_api={data['paid_api']} human_review={data['requires_human_review']}")
+          PY
+      - name: Upload structural evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: competitor-research-${{ github.run_id }}
+          path: artifacts/competitor-research.json
+          if-no-files-found: error
+          retention-days: 14

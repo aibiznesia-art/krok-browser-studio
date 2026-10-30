@@ -1,9 +1,12 @@
 
 
-## Оновлення v0.8 — GitHub Actions pre-deploy gate
+## Оновлення v0.9 — visualized_data і competitor research
 
-- [x] Створено `skills/run-ci.js`, який запускає шість локальних навичок і повертає exit code 1 при помилці.
-- [x] Додано gate у `.github/workflows/pages.yml` перед `upload-pages-artifact` і `deploy-pages`.
-- [x] Додано SEO generation перед gate у `.github/workflows/generated-content-pages.yml`, щоб robots/sitemap перевірялися без false failure.
-- [x] Перевірено локально: `6/6 PASS`, `token_cost=0`.
-- [x] Gate не потребує GitHub або AI secrets.
+- [x] Створено Mermaid-схему потоку GitHub Actions, local skills, competitor evidence, human review і Pages deploy.
+- [x] Відрендерено PNG-схему для візуального перегляду.
+- [x] Додано `competitor-sources.json` із rate limit, max sites, user-agent та public-only політикою.
+- [x] Додано `agents/competitor_scan.py` без платних API або API-ключів.
+- [x] Сканер перевіряє HTTPS, public DNS/IP, `robots.txt`, redirect, content type і обмеження розміру відповіді.
+- [x] Сканер зберігає лише структурні сигнали, ставить `requires_human_review: true` і не копіює повний HTML або медіа.
+- [x] Додано ручний/щотижневий `competitor-research.yml` із GitHub Actions artifact.
+- [x] Додано competitor evidence у generated-content Pages workflow.
