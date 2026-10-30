@@ -1,0 +1,13 @@
+{
+  "name": "krok-browser-studio",
+  "private": true,
+  "version": "0.3.0",
+  "description": "KROK Browser Studio with server-side content generation",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
