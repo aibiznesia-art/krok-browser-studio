@@ -1,12 +1,11 @@
 
 
-## Оновлення v0.2
+## Оновлення v0.3
 
-- [x] Система рою представлена як бджолиний вулик: центральна «матка»-координатор, робочі комірки агентів і видимі сигнали між ролями.
-- [x] Додано ролі архітектора, QA-автоматизатора, security reviewer та SEO-перевіряльника.
-- [x] Додано сценарії HTML, links, accessibility, mobile smoke, secret scan та SEO readiness.
-- [x] Додано генерацію slug і майбутньої GitHub Pages адреси з назви фірми.
-- [x] Додано підтвердження перед запитом публікації та деталізований GitHub Pages workflow.
-- [x] Додано title, description, Open Graph, canonical, robots.txt і sitemap.xml generation.
-- [ ] Підключити owner-підтвердження GitHub repository через штатний server-side workflow.
-- [ ] Запустити реальний GitHub Actions deploy і додати sitemap до Search Console/Bing Webmaster Tools.
+- [x] Додано чергу відкритих HTTPS-URL конкурентів із підтвердженням public-only режиму.
+- [x] Додано персональний бриф із локальним збереженням і попередженням про секрети та приватні дані.
+- [x] Додано локальне завантаження фото/відео з browser preview metadata та rights confirmation для публічних URL.
+- [x] Додано імпорт текстового HTML/CSS/JS/TXT і вивантаження поточної HTML-чернетки.
+- [x] Додано політику competitor/media та опис production server-side адаптера.
+- [ ] Підключити server-side fetcher для дозволених публічних джерел через офіційні API/feeds із rate-limit і ліцензійною перевіркою.
+- [ ] Підключити production storage/upload endpoint для user media після окремого підтвердження та налаштування secrets.
