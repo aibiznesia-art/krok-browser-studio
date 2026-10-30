@@ -1,0 +1,81 @@
+name: Generate content and deploy to GitHub Pages
+
+on:
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: 'Тема для автоматично створеного контенту'
+        required: true
+        default: 'AI для малого бізнесу'
+  schedule:
+    - cron: '17 6 * * 1'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: generated-content-pages
+  cancel-in-progress: true
+
+env:
+  CONTENT_TOPIC: ${{ inputs.topic || 'AI для малого бізнесу' }}
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    outputs:
+      artifact_name: ${{ steps.meta.outputs.artifact_name }}
+    steps:
+      - name: Checkout one-page site
+        uses: actions/checkout@v4
+
+      - name: Validate and collect public sources
+        run: |
+          python -m py_compile agents/*.py
+          mkdir -p artifacts
+          python agents/social_sources.py social-sources.json > artifacts/social-results.json
+
+      - name: Generate cited content draft
+        run: python agents/content_pipeline.py artifacts/social-results.json
+
+      - name: Build Pages directory
+        run: |
+          rm -rf site-dist
+          mkdir -p site-dist/generated site-dist/public
+          cp index.html swarm-ui.js site-dist/
+          cp -r public/. site-dist/public/
+          cp artifacts/generated-content.json site-dist/generated/latest-content.json
+          cat > site-dist/generated/README.md <<'EOF'
+          This content was generated from configured public sources by GitHub Actions.
+          Review the citations and facts before using it in commercial communications.
+          EOF
+          test -s site-dist/index.html
+          test -s site-dist/generated/latest-content.json
+
+      - id: meta
+        run: echo "artifact_name=generated-content-${GITHUB_SHA}" >> "$GITHUB_OUTPUT"
+
+      - name: Upload generated Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          name: ${{ steps.meta.outputs.artifact_name }}
+          path: site-dist
+
+  deploy:
+    needs: generate
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Deploy generated artifact
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: ${{ needs.generate.outputs.artifact_name }}
