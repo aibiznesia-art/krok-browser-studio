@@ -1,0 +1,53 @@
+name: Validate and publish KROK Agent Swarm
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      request:
+        description: 'Simple-language request for the swarm'
+        required: false
+        default: 'перевір публічні джерела'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate HTML and scripts
+        run: |
+          test -s index.html
+          python -m py_compile agents/*.py
+          grep -q 'swarm-ui.js' index.html
+          ! grep -RInE 'sk-[A-Za-z0-9]|ghp_[A-Za-z0-9]|AIza[A-Za-z0-9_-]{20,}|password[[:space:]]*=' . --exclude-dir=.git
+      - name: Run demo orchestrator
+        run: python agents/orchestrator.py "${{ inputs.request || 'перевір публічні джерела' }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: swarm-result
+          path: artifacts/swarm-result.json
+
+  deploy:
+    needs: validate
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4

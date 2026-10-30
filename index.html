@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="uk" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KROK | Digital Solutions for Growing Businesses</title>
+  <meta name="description" content="Створюємо цифрові рішення для бізнесу: веб-розробка, AI-автоматизація, Telegram-боти та digital-дизайн. 10 блоків комерційного успіху.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+          },
+          colors: {
+            brandBg: '#100D10',
+            brandCard: '#1C1519',
+            brandAccent: '#A83249',
+            brandVibrant: '#E05B70',
+            brandMuted: '#B9AEB3',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { background-color: #100D10; color: #FFFFFF; }
+    ::selection { background-color: #A83249; color: #ffffff; }
+    .glass-card { background: rgba(28, 21, 25, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(168, 50, 73, 0.25); }
+    .glass-card:hover { border-color: rgba(224, 91, 112, 0.5); }
+    .glow-accent { box-shadow: 0 0 40px -10px rgba(168, 50, 73, 0.45); }
+    .text-gradient { background: linear-gradient(135deg, #FFFFFF 30%, #E05B70 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  </style>
+</head>
+<body class="bg-brandBg text-white antialiased selection:bg-brandAccent selection:text-white font-sans flex flex-col min-h-screen">
+
+  <!-- ========================================== -->
+  <!-- NAVIGATION BAR (Fixed with 4-lang switcher) -->
+  <!-- ========================================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-[#100D10]/90 backdrop-blur-md border-b border-[#1C1519]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+      <!-- Logo -->
+      <a href="#hero" class="flex items-center gap-2 group">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brandVibrant to-brandAccent flex items-center justify-center font-display font-bold text-white text-base shadow-lg shadow-brandAccent/30 group-hover:scale-105 transition">
+          K
+        </div>
+        <span class="font-display font-bold text-lg tracking-wider text-white">KROK<span class="text-brandVibrant">.</span></span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-6 text-xs font-medium text-brandMuted">
+        <a href="#services" class="hover:text-white transition" data-i18n="navServices">Послуги</a>
+        <a href="#problems" class="hover:text-white transition" data-i18n="navProblems">Рішення</a>
+        <a href="#portfolio" class="hover:text-white transition" data-i18n="navPortfolio">Портфоліо</a>
+        <a href="#ai-solutions" class="hover:text-white transition" data-i18n="navAi">AI-Асистент</a>
+        <a href="#cases" class="hover:text-white transition" data-i18n="navCases">Кейси</a>
+        <a href="#process" class="hover:text-white transition" data-i18n="navProcess">Процес</a>
+        <a href="#about" class="hover:text-white transition" data-i18n="navAbout">Про мене</a>
+        <a href="#pricing" class="hover:text-white transition" data-i18n="navPricing">Формати</a>
+      </nav>
+
+      <!-- Right Controls: 4-Lang Switcher + CTA -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- 4-Language Switcher Pills -->
+        <div class="flex items-center bg-[#1C1519] border border-white/10 rounded-full p-0.5 text-[11px] font-mono">
+          <button onclick="setLang('ua')" id="btn-ua" class="px-2 py-0.5 rounded-full transition font-bold bg-brandAccent text-white">UA</button>
+          <button onclick="setLang('en')" id="btn-en" class="px-2 py-0.5 rounded-full transition text-brandMuted hover:text-white">EN</button>
+          <button onclick="setLang('bs')" id="btn-bs" class="px-2 py-0.5 rounded-full transition text-brandMuted hover:text-white">BS</button>
+          <button onclick="setLang('de')" id="btn-de" class="px-2 py-0.5 rounded-full transition text-brandMuted hover:text-white">DE</button>
+        </div>
+
+        <a href="https://t.me/protos21" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-brandAccent hover:bg-brandVibrant text-white text-xs font-bold transition shadow-md shadow-brandAccent/25">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .37z"/></svg>
+          <span>Telegram</span>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button onclick="toggleMobileNav()" class="md:hidden p-1.5 text-brandMuted hover:text-white rounded-lg focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Nav Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-[#140F13] border-b border-[#1C1519] px-4 py-3 space-y-2 text-sm text-brandMuted">
+      <a href="#services" onclick="toggleMobileNav()" class="block py-1.5 hover:text-white" data-i18n="navServices">Послуги</a>
+      <a href="#problems" onclick="toggleMobileNav()" class="block py-1.5 hover:text-white" data-i18n="navProblems">Рішення</a>
+      <a href="#portfolio" onclick="toggleMobileNav()" class="block py-1.5 hover:text-white" data-i18n="navPortfolio">Портфоліо</a>
+      <a href="#ai-solutions" onclick="toggleMobileNav()" class="block py-1.5 hover:text-white" data-i18n="navAi">AI-Асистент</a>
+      <a href="#cases" onclick="toggleMobileNav()" class="block py-1.5 hover:text-white" data-i18n="navCases">Кейси</a>
+      <a href="#process" onclick="toggleMobileNav()" class="block py-1.5 hover:text-white" data-i18n="navProcess">Процес</a>
+      <a href="#about" onclick="toggleMobileNav()" class="block py-1.5 hover:text-white" data-i18n="navAbout">Про мене</a>
+      <a href="#pricing" onclick="toggleMobileNav()" class="block py-1.5 hover:text-white" data-i18n="navPricing">Формати</a>
+      <a href="#contact" onclick="toggleMobileNav()" class="block py-1.5 text-brandVibrant font-bold" data-i18n="heroBtnContact">Обговорити проєкт</a>
+    </div>
+  </header>
+
+  <main class="flex-1 pt-16">
+    <!-- ========================================== -->
+    <!-- 01. HERO — First Impression                -->
+    <!-- ========================================== -->
+    <section id="hero" class="relative pt-20 pb-24 px-4 sm:px-6 overflow-hidden">
+      <!-- Ambient Radial Glow -->
+      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-gradient-to-b from-brandAccent/25 via-brandVibrant/10 to-transparent blur-3xl pointer-events-none rounded-full"></div>
+
+      <div class="max-w-5xl mx-auto text-center relative z-10 space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brandCard border border-brandAccent/30 text-xs font-mono text-brandVibrant">
+          <span class="w-2 h-2 rounded-full bg-brandVibrant animate-pulse"></span>
+          <span>Web Development · AI Automation · Digital Design</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight font-display text-white max-w-4xl mx-auto leading-tight">
+          <span data-i18n="heroTitle">Цифрові рішення для розвитку вашого бізнесу</span>
+        </h1>
+
+        <p class="text-base sm:text-lg text-brandMuted max-w-2xl mx-auto font-normal leading-relaxed" data-i18n="heroSubtitle">
+          Створюємо цифрові системи, які допомагають бізнесу виглядати авторитетно, залучати платоспроможних клієнтів та автоматизувати щоденну рутину без втрати лідів.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="#portfolio" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-gradient-to-r from-brandAccent to-brandVibrant hover:from-brandVibrant hover:to-brandAccent text-white font-bold text-sm shadow-xl shadow-brandAccent/30 transition hover:scale-105 active:scale-95 text-center" data-i18n="heroBtnWorks">
+            Переглянути роботи
+          </a>
+          <a href="#contact" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-brandCard hover:bg-[#251b22] text-white border border-brandAccent/40 font-semibold text-sm transition text-center" data-i18n="heroBtnContact">
+            Обговорити проєкт
+          </a>
+        </div>
+
+        <!-- Metric Badges -->
+        <div class="pt-12 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto text-left">
+          <div class="p-3.5 rounded-xl bg-brandCard/60 border border-brandAccent/20">
+            <div class="text-xl font-bold font-display text-brandVibrant">100%</div>
+            <div class="text-[11px] text-brandMuted" data-i18n="stat1">Мобільна адаптивність</div>
+          </div>
+          <div class="p-3.5 rounded-xl bg-brandCard/60 border border-brandAccent/20">
+            <div class="text-xl font-bold font-display text-brandVibrant">24/7</div>
+            <div class="text-[11px] text-brandMuted" data-i18n="stat2">AI Lead Assistant</div>
+          </div>
+          <div class="p-3.5 rounded-xl bg-brandCard/60 border border-brandAccent/20">
+            <div class="text-xl font-bold font-display text-brandVibrant">4 мови</div>
+            <div class="text-[11px] text-brandMuted" data-i18n="stat3">Мультимовний контент</div>
+          </div>
+          <div class="p-3.5 rounded-xl bg-brandCard/60 border border-brandAccent/20">
+            <div class="text-xl font-bold font-display text-brandVibrant">&lt; 15 сек</div>
+            <div class="text-[11px] text-brandMuted" data-i18n="stat4">Розуміння цінності</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 02. SERVICES — Наші послуги               -->
+    <!-- ========================================== -->
+    <section id="services" class="py-20 px-4 sm:px-6 bg-[#140E13] border-y border-[#1C1519]">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center space-y-3 mb-14">
+          <span class="text-xs font-mono font-bold text-brandVibrant uppercase tracking-wider">02. SERVICES</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold font-display" data-i18n="servicesTitle">Комплексні послуги для вашого росту</h2>
+          <p class="text-sm text-brandMuted max-w-xl mx-auto" data-i18n="servicesSubtitle">Від швидкого лендінгу до повної автоматизації прийому замовлень у Telegram та CRM.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Card 1: Web Development -->
+          <div class="p-6 rounded-2xl glass-card transition group flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="w-10 h-10 rounded-xl bg-brandAccent/20 text-brandVibrant flex items-center justify-center font-mono text-lg font-bold group-hover:bg-brandAccent group-hover:text-white transition">
+                01
+              </div>
+              <h3 class="text-lg font-bold text-white" data-i18n="srvWebTitle">Web Development</h3>
+              <p class="text-xs text-brandMuted leading-relaxed" data-i18n="srvWebDesc">Сайти-візитівки, комерційні Landing Pages, промо-сторінки та каталоги для бізнесу.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-white/5 text-[11px] font-mono text-brandVibrant">
+              HTML5 · Tailwind · Mobile-first
+            </div>
+          </div>
+
+          <!-- Card 2: AI Assistants -->
+          <div class="p-6 rounded-2xl glass-card transition group flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="w-10 h-10 rounded-xl bg-brandAccent/20 text-brandVibrant flex items-center justify-center font-mono text-lg font-bold group-hover:bg-brandAccent group-hover:text-white transition">
+                02
+              </div>
+              <h3 class="text-lg font-bold text-white" data-i18n="srvAiTitle">AI Assistants</h3>
+              <p class="text-xs text-brandMuted leading-relaxed" data-i18n="srvAiDesc">AI-консультанти, розумні Telegram-боти, автоматичні лід-магніти та кваліфікація клієнтів.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-white/5 text-[11px] font-mono text-brandVibrant">
+              Telegram Bot · Gemini · RAG Base
+            </div>
+          </div>
+
+          <!-- Card 3: Business Automation -->
+          <div class="p-6 rounded-2xl glass-card transition group flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="w-10 h-10 rounded-xl bg-brandAccent/20 text-brandVibrant flex items-center justify-center font-mono text-lg font-bold group-hover:bg-brandAccent group-hover:text-white transition">
+                03
+              </div>
+              <h3 class="text-lg font-bold text-white" data-i18n="srvAutoTitle">Business Automation</h3>
+              <p class="text-xs text-brandMuted leading-relaxed" data-i18n="srvAutoDesc">n8n та Make сценарії, миттєве надсилання сповіщень у чати, синхронізація з таблицями та CRM.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-white/5 text-[11px] font-mono text-brandVibrant">
+              n8n · Webhooks · Google Sheets
+            </div>
+          </div>
+
+          <!-- Card 4: Digital Design -->
+          <div class="p-6 rounded-2xl glass-card transition group flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="w-10 h-10 rounded-xl bg-brandAccent/20 text-brandVibrant flex items-center justify-center font-mono text-lg font-bold group-hover:bg-brandAccent group-hover:text-white transition">
+                04
+              </div>
+              <h3 class="text-lg font-bold text-white" data-i18n="srvDesignTitle">Digital Design</h3>
+              <p class="text-xs text-brandMuted leading-relaxed" data-i18n="srvDesignDesc">Преміальні логотипи, фірмовий стиль, кольорові палітри, банери та дизайн презентацій.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-white/5 text-[11px] font-mono text-brandVibrant">
+              Figma · Identity · UI/UX Art
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 03. BUSINESS PROBLEMS — Які проблеми долаємо -->
+    <!-- ========================================== -->
+    <section id="problems" class="py-20 px-4 sm:px-6">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center space-y-3 mb-14">
+          <span class="text-xs font-mono font-bold text-brandVibrant uppercase tracking-wider">03. BUSINESS PROBLEMS</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold font-display" data-i18n="probTitle">Які проблеми бізнесу ми вирішуємо</h2>
+          <p class="text-sm text-brandMuted max-w-xl mx-auto" data-i18n="probSubtitle">Порівняння типових болів підприємців із конкретними цифровими рішеннями KROK.</p>
+        </div>
+
+        <div class="space-y-4">
+          <!-- Row 1 -->
+          <div class="grid sm:grid-cols-2 gap-4 p-4 rounded-xl bg-brandCard/60 border border-brandAccent/20">
+            <div class="flex items-start gap-3">
+              <span class="text-rose-400 font-bold shrink-0 mt-0.5">✕</span>
+              <div>
+                <strong class="text-sm text-white" data-i18n="prob1Title">Відсутність сучасного сайту</strong>
+                <p class="text-xs text-brandMuted mt-1" data-i18n="prob1Desc">Клієнти йдуть до конкурентів через відсутність візуальної довіри або застарілий вигляд.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 border-t sm:border-t-0 sm:border-l border-white/10 pt-3 sm:pt-0 sm:pl-4">
+              <span class="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
+              <div>
+                <strong class="text-sm text-white" data-i18n="sol1Title">Швидкий преміальний веб-сайт</strong>
+                <p class="text-xs text-brandMuted mt-1" data-i18n="sol1Desc">Сучасний адаптивний SPA, що за 10 секунд чітко доносить цінність і формує статус експерта.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="grid sm:grid-cols-2 gap-4 p-4 rounded-xl bg-brandCard/60 border border-brandAccent/20">
+            <div class="flex items-start gap-3">
+              <span class="text-rose-400 font-bold shrink-0 mt-0.5">✕</span>
+              <div>
+                <strong class="text-sm text-white" data-i18n="prob2Title">Повільна відповідь на звернення</strong>
+                <p class="text-xs text-brandMuted mt-1" data-i18n="prob2Desc">Клієнт чекає годинами в Direct чи месенджері, перегорає і купує в іншому місці.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 border-t sm:border-t-0 sm:border-l border-white/10 pt-3 sm:pt-0 sm:pl-4">
+              <span class="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
+              <div>
+                <strong class="text-sm text-white" data-i18n="sol2Title">Миттєвий AI Lead Assistant</strong>
+                <p class="text-xs text-brandMuted mt-1" data-i18n="sol2Desc">Бот відповідає за 2 секунди 24/7 за базою знань вашого бізнесу і забирає контакти.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 3 -->
+          <div class="grid sm:grid-cols-2 gap-4 p-4 rounded-xl bg-brandCard/60 border border-brandAccent/20">
+            <div class="flex items-start gap-3">
+              <span class="text-rose-400 font-bold shrink-0 mt-0.5">✕</span>
+              <div>
+                <strong class="text-sm text-white" data-i18n="prob3Title">Рутинне перенесення замовлень</strong>
+                <p class="text-xs text-brandMuted mt-1" data-i18n="prob3Desc">Власник вручну копіює контакти з чатів у таблиці та забуває про повторні нагадування.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 border-t sm:border-t-0 sm:border-l border-white/10 pt-3 sm:pt-0 sm:pl-4">
+              <span class="text-emerald-400 font-bold shrink-0 mt-0.5">✓</span>
+              <div>
+                <strong class="text-sm text-white" data-i18n="sol3Title">Автоматизація через n8n & CRM</strong>
+                <p class="text-xs text-brandMuted mt-1" data-i18n="sol3Desc">Кожна заявка летить у ваш Telegram, зберігається у базі та отримує авто-follow-up через 6 годин.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 04. PORTFOLIO — Наші роботи                -->
+    <!-- ========================================== -->
+    <section id="portfolio" class="py-20 px-4 sm:px-6 bg-[#140E13] border-y border-[#1C1519]">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center space-y-3 mb-10">
+          <span class="text-xs font-mono font-bold text-brandVibrant uppercase tracking-wider">04. PORTFOLIO</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold font-display" data-i18n="portTitle">Вибрані проєкти та концепти</h2>
+          <p class="text-sm text-brandMuted max-w-xl mx-auto" data-i18n="portSubtitle">Реальні рішення та демонстраційні концепти, чітко розмежовані за типом.</p>
+
+          <!-- Filter Tabs -->
+          <div class="flex items-center justify-center gap-2 pt-4 flex-wrap">
+            <button onclick="filterPortfolio('all')" class="port-filter-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-brandAccent text-white" data-cat="all">Усі роботи</button>
+            <button onclick="filterPortfolio('web')" class="port-filter-btn px-4 py-1.5 rounded-full text-xs font-medium transition bg-brandCard text-brandMuted hover:text-white" data-cat="web">Websites</button>
+            <button onclick="filterPortfolio('ai')" class="port-filter-btn px-4 py-1.5 rounded-full text-xs font-medium transition bg-brandCard text-brandMuted hover:text-white" data-cat="ai">AI Automation</button>
+            <button onclick="filterPortfolio('design')" class="port-filter-btn px-4 py-1.5 rounded-full text-xs font-medium transition bg-brandCard text-brandMuted hover:text-white" data-cat="design">Design</button>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6" id="portfolio-grid">
+          <!-- Item 1: Real Project -->
+          <div class="port-card web p-5 rounded-2xl glass-card flex flex-col justify-between space-y-4">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-950 text-emerald-300 border border-emerald-500/30">
+                  ● Реальний проєкт
+                </span>
+                <span class="text-[10px] font-mono text-brandMuted">2026</span>
+              </div>
+              <h3 class="text-lg font-bold text-white">EcoCraft Marketplace</h3>
+              <p class="text-xs text-brandMuted mt-1.5 leading-relaxed">
+                Комерційна онлайн-вітрина для крафтової майстерні з каталогом товарів, цінами в ₴ та кнопками швидкого замовлення у месенджерах.
+              </p>
+            </div>
+            <div class="space-y-3 pt-3 border-t border-white/5">
+              <div class="flex gap-1.5 flex-wrap text-[10px] font-mono text-brandVibrant">
+                <span class="bg-[#241b21] px-2 py-0.5 rounded">SPA</span>
+                <span class="bg-[#241b21] px-2 py-0.5 rounded">Tailwind</span>
+                <span class="bg-[#241b21] px-2 py-0.5 rounded">Telegram API</span>
+              </div>
+              <a href="#contact" class="inline-flex items-center gap-1 text-xs text-brandVibrant hover:underline font-bold">
+                <span>Замовити подібне рішення</span> →
+              </a>
+            </div>
+          </div>
+
+          <!-- Item 2: Real Project AI -->
+          <div class="port-card ai p-5 rounded-2xl glass-card flex flex-col justify-between space-y-4">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-950 text-emerald-300 border border-emerald-500/30">
+                  ● Реальний проєкт
+                </span>
+                <span class="text-[10px] font-mono text-brandMuted">2026</span>
+              </div>
+              <h3 class="text-lg font-bold text-white">KROK Lead Assistant Bot</h3>
+              <p class="text-xs text-brandMuted mt-1.5 leading-relaxed">
+                Автоматизований Telegram-бот для онлайн-школи: консультація клієнтів за тарифами, запис контактів та переадресація гарячих лідів.
+              </p>
+            </div>
+            <div class="space-y-3 pt-3 border-t border-white/5">
+              <div class="flex gap-1.5 flex-wrap text-[10px] font-mono text-brandVibrant">
+                <span class="bg-[#241b21] px-2 py-0.5 rounded">n8n</span>
+                <span class="bg-[#241b21] px-2 py-0.5 rounded">Gemini Flash</span>
+                <span class="bg-[#241b21] px-2 py-0.5 rounded">CRM Webhook</span>
+              </div>
+              <a href="#ai-solutions" class="inline-flex items-center gap-1 text-xs text-brandVibrant hover:underline font-bold">
+                <span>Переглянути схему бота</span> →
+              </a>
+            </div>
+          </div>
+
+          <!-- Item 3: Demo Concept -->
+          <div class="port-card design p-5 rounded-2xl glass-card flex flex-col justify-between space-y-4">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-3">
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono bg-indigo-950 text-indigo-300 border border-indigo-500/30">
+                  ◈ Демо-концепт
+                </span>
+                <span class="text-[10px] font-mono text-brandMuted">Концепт</span>
+              </div>
+              <h3 class="text-lg font-bold text-white">Prism Dental Studio</h3>
+              <p class="text-xs text-brandMuted mt-1.5 leading-relaxed">
+                Преміальний лендінг для приватної клініки з калькулятором вартості лікування, інтерактивними до/після кейсами та онлайн-записом.
+              </p>
+            </div>
+            <div class="space-y-3 pt-3 border-t border-white/5">
+              <div class="flex gap-1.5 flex-wrap text-[10px] font-mono text-brandVibrant">
+                <span class="bg-[#241b21] px-2 py-0.5 rounded">UI Design</span>
+                <span class="bg-[#241b21] px-2 py-0.5 rounded">Bento Grid</span>
+                <span class="bg-[#241b21] px-2 py-0.5 rounded">Interactive JS</span>
+              </div>
+              <a href="#contact" class="inline-flex items-center gap-1 text-xs text-brandVibrant hover:underline font-bold">
+                <span>Адаптувати під ваш бізнес</span> →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 05. AI SOLUTIONS — Автоматизація в дії     -->
+    <!-- ========================================== -->
+    <section id="ai-solutions" class="py-20 px-4 sm:px-6">
+      <div class="max-w-5xl mx-auto space-y-12">
+        <div class="text-center space-y-3">
+          <span class="text-xs font-mono font-bold text-brandVibrant uppercase tracking-wider">05. AI SOLUTIONS</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold font-display" data-i18n="aiTitle">AI Lead Assistant у дії</h2>
+          <p class="text-sm text-brandMuted max-w-xl mx-auto" data-i18n="aiSubtitle">Як наша система перетворює холодні звернення у закриті угоди без вашої постійної участі.</p>
+        </div>
+
+        <!-- System Architecture Flow -->
+        <div class="grid sm:grid-cols-3 lg:grid-cols-6 gap-3 text-center">
+          <div class="p-4 rounded-xl bg-brandCard border border-brandAccent/30 flex flex-col items-center justify-between">
+            <span class="text-xl">💬</span>
+            <div class="text-xs font-bold text-white mt-2">1. Звернення</div>
+            <div class="text-[10px] text-brandMuted mt-1">Клієнт пише в Telegram або форму</div>
+          </div>
+          <div class="p-4 rounded-xl bg-brandCard border border-brandAccent/30 flex flex-col items-center justify-between">
+            <span class="text-xl">⚡</span>
+            <div class="text-xs font-bold text-white mt-2">2. Консультація</div>
+            <div class="text-[10px] text-brandMuted mt-1">Бот відповідає за базою послуг</div>
+          </div>
+          <div class="p-4 rounded-xl bg-brandCard border border-brandAccent/30 flex flex-col items-center justify-between">
+            <span class="text-xl">📋</span>
+            <div class="text-xs font-bold text-white mt-2">3. Збір ліда</div>
+            <div class="text-[10px] text-brandMuted mt-1">Отримує телефон, бюджет і задачу</div>
+          </div>
+          <div class="p-4 rounded-xl bg-brandCard border border-brandAccent/30 flex flex-col items-center justify-between">
+            <span class="text-xl">🗄️</span>
+            <div class="text-xs font-bold text-white mt-2">4. CRM / Таблиця</div>
+            <div class="text-[10px] text-brandMuted mt-1">Миттєвий запис без помилок</div>
+          </div>
+          <div class="p-4 rounded-xl bg-brandCard border border-brandAccent/30 flex flex-col items-center justify-between">
+            <span class="text-xl">⏰</span>
+            <div class="text-xs font-bold text-white mt-2">5. Follow-Up</div>
+            <div class="text-[10px] text-brandMuted mt-1">Нагадування через 6 год</div>
+          </div>
+          <div class="p-4 rounded-xl bg-brandCard border border-brandAccent/30 flex flex-col items-center justify-between">
+            <span class="text-xl">🤝</span>
+            <div class="text-xs font-bold text-white mt-2">6. Менеджер</div>
+            <div class="text-[10px] text-brandMuted mt-1">Передача теплого клієнта</div>
+          </div>
+        </div>
+
+        <!-- Interactive Telegram Bot Live Simulator -->
+        <div class="max-w-xl mx-auto rounded-2xl bg-brandCard border border-brandAccent/40 p-4 sm:p-6 shadow-2xl">
+          <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 rounded-full bg-brandAccent flex items-center justify-center font-bold text-white text-xs">
+                AI
+              </div>
+              <div>
+                <div class="text-xs font-bold text-white">KROK Lead Assistant (Demo)</div>
+                <div class="text-[10px] text-emerald-400 font-mono">● онлайн 24/7</div>
+              </div>
+            </div>
+            <span class="text-[10px] font-mono text-brandMuted">Telegram Live Demo</span>
+          </div>
+
+          <div class="space-y-3 text-xs mb-4 max-h-60 overflow-y-auto" id="chat-messages">
+            <div class="bg-[#241a20] p-3 rounded-xl rounded-tl-none max-w-[85%] text-slate-200">
+              👋 Вітаю! Я цифровий помічник KROK. Що саме вас цікавить: створення сайту, AI-автоматизація чи розробка Telegram-бота?
+            </div>
+          </div>
+
+          <div class="flex gap-2">
+            <input type="text" id="chat-input" placeholder="Напишіть запитання..." class="flex-1 bg-[#100D10] border border-white/10 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-brandVibrant">
+            <button onclick="sendChatMessage()" class="px-4 py-2 bg-brandAccent hover:bg-brandVibrant text-white font-bold rounded-xl text-xs transition">
+              Надіслати
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 06. CASE STUDIES — Реальні результати     -->
+    <!-- ========================================== -->
+    <section id="cases" class="py-20 px-4 sm:px-6 bg-[#140E13] border-y border-[#1C1519]">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center space-y-3 mb-14">
+          <span class="text-xs font-mono font-bold text-brandVibrant uppercase tracking-wider">06. CASE STUDIES</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold font-display" data-i18n="casesTitle">Детальні кейси та результати</h2>
+          <p class="text-sm text-brandMuted max-w-xl mx-auto" data-i18n="casesSubtitle">Чесний опис завдань, стек технологій та фактичний результат для замовника.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- Case 1 -->
+          <div class="p-6 rounded-2xl glass-card space-y-4">
+            <div class="flex items-center justify-between text-xs font-mono text-brandMuted">
+              <span>Кейс #01</span>
+              <span class="text-brandVibrant">E-COMMERCE & LOCAL</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">Каталог крафтової майстерні</h3>
+            <div class="space-y-2 text-xs text-slate-300">
+              <p><strong>Завдання клієнта:</strong> Втомились відповідати на питання «яка ціна?» та «що в наявності?» в Instagram Direct.</p>
+              <p><strong>Що зроблено:</strong> Створено односторінковий швидкий каталог із фото товарів, актуальними залишками та прямим лінком на оформлення в один клік.</p>
+              <p><strong>Технології:</strong> HTML5, Tailwind CSS, Telegram Bot Webhook, LocalStorage.</p>
+              <div class="p-3 bg-emerald-950/40 border border-emerald-500/30 rounded-xl text-emerald-300 text-[11px]">
+                🎯 <strong>Результат:</strong> Час оформлення замовлення скоротився на 65%, клієнти одразу бачать ціну в гривнях.
+              </div>
+            </div>
+          </div>
+
+          <!-- Case 2 -->
+          <div class="p-6 rounded-2xl glass-card space-y-4">
+            <div class="flex items-center justify-between text-xs font-mono text-brandMuted">
+              <span>Кейс #02</span>
+              <span class="text-brandVibrant">SERVICE & LEAD-GEN</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">AI-кваліфікація заявок для консалтингу</h3>
+            <div class="space-y-2 text-xs text-slate-300">
+              <p><strong>Завдання клієнта:</strong> Втрачали до 40% звернень у неробочий час (вихідні та ніч), коли менеджери офлайн.</p>
+              <p><strong>Що зроблено:</strong> Інтегровано Telegram AI Lead Assistant на базі Gemini, який збирає бриф та кладе картку ліда в CRM.</p>
+              <p><strong>Технології:</strong> n8n Workflow, Telegram Bot, Google Sheets, Make.</p>
+              <div class="p-3 bg-emerald-950/40 border border-emerald-500/30 rounded-xl text-emerald-300 text-[11px]">
+                🎯 <strong>Результат:</strong> 0 пропущених нічних звернень, конверсія в повторну розмову зросла в 2.1 раза.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 07. WORK PROCESS — Етапи співпраці         -->
+    <!-- ========================================== -->
+    <section id="process" class="py-20 px-4 sm:px-6">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center space-y-3 mb-14">
+          <span class="text-xs font-mono font-bold text-brandVibrant uppercase tracking-wider">07. WORK PROCESS</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold font-display" data-i18n="procTitle">Як відбувається наша співпраця</h2>
+          <p class="text-sm text-brandMuted max-w-xl mx-auto" data-i18n="procSubtitle">Зрозумілий 6-етапний процес без технічного хаосу та затягування дедлайнів.</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="p-5 rounded-2xl bg-brandCard border border-brandAccent/20 space-y-2">
+            <span class="text-xs font-mono font-bold text-brandVibrant">КРОК 01</span>
+            <h4 class="text-sm font-bold text-white">Обговорення завдання</h4>
+            <p class="text-xs text-brandMuted">Визначаємо ваші цілі, цільову аудиторію та очікувані метрики окупності проєкту.</p>
+          </div>
+          <div class="p-5 rounded-2xl bg-brandCard border border-brandAccent/20 space-y-2">
+            <span class="text-xs font-mono font-bold text-brandVibrant">КРОК 02</span>
+            <h4 class="text-sm font-bold text-white">Аналіз бізнесу & ТЗ</h4>
+            <p class="text-xs text-brandMuted">Фіксуємо структуру, сценарії лідогенерації та мовні вимоги (UA / EN / BS / DE).</p>
+          </div>
+          <div class="p-5 rounded-2xl bg-brandCard border border-brandAccent/20 space-y-2">
+            <span class="text-xs font-mono font-bold text-brandVibrant">КРОК 03</span>
+            <h4 class="text-sm font-bold text-white">Підготовка концепції</h4>
+            <p class="text-xs text-brandMuted">Розробляємо прототип першого екрану, дизайн-систему та погоджуємо стиль.</p>
+          </div>
+          <div class="p-5 rounded-2xl bg-brandCard border border-brandAccent/20 space-y-2">
+            <span class="text-xs font-mono font-bold text-brandVibrant">КРОК 04</span>
+            <h4 class="text-sm font-bold text-white">Розробка & Інтеграція</h4>
+            <p class="text-xs text-brandMuted">Верстка сайту, налаштування форми заявок, AI-бота та сценаріїв n8n.</p>
+          </div>
+          <div class="p-5 rounded-2xl bg-brandCard border border-brandAccent/20 space-y-2">
+            <span class="text-xs font-mono font-bold text-brandVibrant">КРОК 05</span>
+            <h4 class="text-sm font-bold text-white">Тестування на телефонах</h4>
+            <p class="text-xs text-brandMuted">Перевірка швидкості, шрифтів, кліків та коректності роботи на iPhone та Android.</p>
+          </div>
+          <div class="p-5 rounded-2xl bg-brandCard border border-brandAccent/20 space-y-2">
+            <span class="text-xs font-mono font-bold text-brandVibrant">КРОК 06</span>
+            <h4 class="text-sm font-bold text-white">Передача готового рішення</h4>
+            <p class="text-xs text-brandMuted">Публікація на хостинг/GitHub Pages, підключення домену та інструкція користування.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 08. ABOUT — Про мене                      -->
+    <!-- ========================================== -->
+    <section id="about" class="py-20 px-4 sm:px-6 bg-[#140E13] border-y border-[#1C1519]">
+      <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8">
+        <div class="w-32 h-32 md:w-44 md:h-44 rounded-2xl bg-gradient-to-tr from-brandAccent to-brandVibrant flex items-center justify-center font-display font-black text-white text-5xl shrink-0 shadow-2xl shadow-brandAccent/30">
+          K
+        </div>
+        <div class="space-y-4 text-center md:text-left">
+          <span class="text-xs font-mono font-bold text-brandVibrant uppercase tracking-wider">08. ABOUT KROK</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold font-display text-white" data-i18n="aboutTitle">Хто стоїть за KROK Digital Studio</h2>
+          <p class="text-xs sm:text-sm text-brandMuted leading-relaxed" data-i18n="aboutDesc">
+            Я інженер та digital-спеціаліст, який допомагає підприємцям будувати сучасну цифрову присутність. Мій підхід базується на трьох принципах: жодного шаблонного сміття, обов'язковий фокус на продажах і конверсії, та повна адаптивність на смартфонах.
+          </p>
+          <div class="flex items-center justify-center md:justify-start gap-4 text-xs font-mono text-slate-300">
+            <span>📍 Сараєво / Україна</span>
+            <span>·</span>
+            <span>💻 Full-Stack & AI</span>
+            <span>·</span>
+            <span>🛡️ L5 Security</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 09. COOPERATION — Формати співпраці        -->
+    <!-- ========================================== -->
+    <section id="pricing" class="py-20 px-4 sm:px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center space-y-3 mb-14">
+          <span class="text-xs font-mono font-bold text-brandVibrant uppercase tracking-wider">09. COOPERATION</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold font-display" data-i18n="coopTitle">Гнучкі формати співпраці</h2>
+          <p class="text-sm text-brandMuted max-w-xl mx-auto" data-i18n="coopSubtitle">Оберіть відповідний тариф або отримайте індивідуальну пропозицію під вашу задачу.</p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Package 1: START -->
+          <div class="p-6 rounded-2xl bg-brandCard border border-white/10 flex flex-col justify-between space-y-6">
+            <div class="space-y-3">
+              <span class="text-xs font-mono font-bold text-brandMuted">ПАКЕТ 01</span>
+              <h3 class="text-xl font-bold text-white">START</h3>
+              <p class="text-xs text-brandMuted">Швидкий старт для приватних майстрів, кафе та експертів.</p>
+              <ul class="text-xs text-slate-300 space-y-2 pt-3 border-t border-white/10">
+                <li>✓ Односторінковий сайт-візитівка</li>
+                <li>✓ Мобільна оптимізація 100%</li>
+                <li>✓ Кнопки Telegram / Viber / Телефон</li>
+                <li>✓ Публікація на GitHub Pages</li>
+              </ul>
+            </div>
+            <div>
+              <div class="text-xs font-mono text-brandVibrant mb-2">Ціна — за запитом</div>
+              <a href="#contact" class="block w-full py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs text-center transition">
+                Замовити START
+              </a>
+            </div>
+          </div>
+
+          <!-- Package 2: BUSINESS (Featured) -->
+          <div class="p-6 rounded-2xl bg-gradient-to-b from-[#251821] to-brandCard border-2 border-brandVibrant flex flex-col justify-between space-y-6 relative shadow-xl shadow-brandAccent/20">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-0.5 rounded-full bg-brandVibrant text-white text-[10px] font-bold uppercase font-mono tracking-wider">
+              Рекомендовано
+            </div>
+            <div class="space-y-3">
+              <span class="text-xs font-mono font-bold text-brandVibrant">ПАКЕТ 02</span>
+              <h3 class="text-xl font-bold text-white">BUSINESS</h3>
+              <p class="text-xs text-brandMuted">Комплексна комерційна присутність для зростання продажів.</p>
+              <ul class="text-xs text-slate-200 space-y-2 pt-3 border-t border-brandVibrant/20">
+                <li>✓ 10-блокова структура (як KROK)</li>
+                <li>✓ 4 мовні версії (UA/EN/BS/DE)</li>
+                <li>✓ Форма заявок з валідацією</li>
+                <li>✓ Базова SEO-оптимізація та аналітика</li>
+              </ul>
+            </div>
+            <div>
+              <div class="text-xs font-mono text-brandVibrant mb-2">Оптимальний вибір</div>
+              <a href="#contact" class="block w-full py-2.5 rounded-xl bg-brandAccent hover:bg-brandVibrant text-white font-bold text-xs text-center transition shadow-lg">
+                Замовити BUSINESS
+              </a>
+            </div>
+          </div>
+
+          <!-- Package 3: AI AUTOMATION -->
+          <div class="p-6 rounded-2xl bg-brandCard border border-white/10 flex flex-col justify-between space-y-6">
+            <div class="space-y-3">
+              <span class="text-xs font-mono font-bold text-brandMuted">ПАКЕТ 03</span>
+              <h3 class="text-xl font-bold text-white">AI AUTOMATION</h3>
+              <p class="text-xs text-brandMuted">Автопілот обробки лідів для діючих бізнесів.</p>
+              <ul class="text-xs text-slate-300 space-y-2 pt-3 border-t border-white/10">
+                <li>✓ Розумний бот Telegram / Instagram</li>
+                <li>✓ Навчання на базі знань компанії</li>
+                <li>✓ Синхронізація з CRM / Sheets</li>
+                <li>✓ Follow-up нагадування 6 год</li>
+              </ul>
+            </div>
+            <div>
+              <div class="text-xs font-mono text-brandVibrant mb-2">Ціна — за запитом</div>
+              <a href="#contact" class="block w-full py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs text-center transition">
+                Замовити AI
+              </a>
+            </div>
+          </div>
+
+          <!-- Package 4: CUSTOM -->
+          <div class="p-6 rounded-2xl bg-brandCard border border-white/10 flex flex-col justify-between space-y-6">
+            <div class="space-y-3">
+              <span class="text-xs font-mono font-bold text-brandMuted">ПАКЕТ 04</span>
+              <h3 class="text-xl font-bold text-white">CUSTOM</h3>
+              <p class="text-xs text-brandMuted">Індивідуальні цифрові системи під унікальні задачі.</p>
+              <ul class="text-xs text-slate-300 space-y-2 pt-3 border-t border-white/10">
+                <li>✓ Складні калькулятори та каталоги</li>
+                <li>✓ Багатомовні кастомні портали</li>
+                <li>✓ Щомісячна технічна підтримка</li>
+                <li>✓ Постійний розвиток функціоналу</li>
+              </ul>
+            </div>
+            <div>
+              <div class="text-xs font-mono text-brandVibrant mb-2">Індивідуальний розрахунок</div>
+              <a href="#contact" class="block w-full py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs text-center transition">
+                Обговорити проєкт
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- 10. CONTACT — Заявка та контакти           -->
+    <!-- ========================================== -->
+    <section id="contact" class="py-20 px-4 sm:px-6 bg-[#140E13] border-t border-[#1C1519]">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center space-y-3 mb-12">
+          <span class="text-xs font-mono font-bold text-brandVibrant uppercase tracking-wider">10. CONTACT</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold font-display" data-i18n="contactTitle">Готові створити сильне рішення?</h2>
+          <p class="text-sm text-brandMuted max-w-lg mx-auto" data-i18n="contactSubtitle">
+            Напишіть напряму в Telegram або заповніть швидку форму для отримання пропозиції протягом дня.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-5 gap-8 bg-brandCard p-6 sm:p-8 rounded-3xl border border-brandAccent/30">
+          <!-- Left Info Column -->
+          <div class="md:col-span-2 space-y-6">
+            <div>
+              <span class="text-xs font-mono text-brandVibrant">ПРЯМИЙ ЗВ'ЯЗОК</span>
+              <h4 class="text-lg font-bold text-white mt-1">Особистий контакт</h4>
+            </div>
+
+            <div class="space-y-4 text-xs">
+              <a href="https://t.me/protos21" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 rounded-xl bg-[#241a20] hover:bg-brandAccent text-white transition group">
+                <div class="w-8 h-8 rounded-lg bg-brandVibrant flex items-center justify-center text-white shrink-0">
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .37z"/></svg>
+                </div>
+                <div>
+                  <div class="text-[10px] text-brandMuted">Telegram (найшвидше)</div>
+                  <div class="font-bold font-mono">@protos21</div>
+                </div>
+              </a>
+
+              <div class="p-3 rounded-xl bg-[#241a20] text-slate-300">
+                <div class="text-[10px] text-brandMuted">Графік роботи</div>
+                <div class="font-medium mt-0.5">Пн-Сб: 09:00 – 20:00 (EET)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Interactive Form -->
+          <div class="md:col-span-3">
+            <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1">Ваше ім'я або назва компанії *</label>
+                <input type="text" required placeholder="Олександр / Кафе Лаванда" class="w-full bg-[#100D10] border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-brandVibrant">
+              </div>
+
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1">Контакт для зв'язку (Telegram або телефон) *</label>
+                <input type="text" required placeholder="@username або +380..." class="w-full bg-[#100D10] border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-brandVibrant">
+              </div>
+
+              <div>
+                <label class="block text-xs font-medium text-slate-300 mb-1">Яка задача перед вами стоїть?</label>
+                <textarea rows="3" placeholder="Потрібен односторінковий сайт та бот для прийому заявок..." class="w-full bg-[#100D10] border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-brandVibrant"></textarea>
+              </div>
+
+              <button type="submit" class="w-full py-3 rounded-xl bg-gradient-to-r from-brandAccent to-brandVibrant hover:from-brandVibrant hover:to-brandAccent text-white font-bold text-xs transition shadow-lg shadow-brandAccent/25">
+                Надіслати запит на прорахунок
+              </button>
+
+              <div id="form-toast" class="hidden p-3 rounded-xl bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 text-xs text-center font-medium animate-fadeIn">
+                ✓ Дякуємо! Запит прийнято. Зв'яжемося з вами найближчим часом.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================== -->
+  <!-- FOOTER                                     -->
+  <!-- ========================================== -->
+  <footer class="py-8 border-t border-[#1C1519] bg-[#0c090c] text-center text-xs text-brandMuted font-mono">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>© 2026 KROK Digital Studio. All rights reserved.</div>
+      <div class="flex items-center gap-4 text-[11px]">
+        <span>Standard L5 Security</span>
+        <span>·</span>
+        <span>GitHub Pages Hosted</span>
+        <span>·</span>
+        <a href="https://t.me/protos21" class="text-brandVibrant hover:underline">@protos21</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================== -->
+  <!-- JAVASCRIPT: 4-Language Dictionary + Logic  -->
+  <!-- ========================================== -->
+  <script>
+    const translations = {
+      ua: {
+        navServices: "Послуги",
+        navProblems: "Рішення",
+        navPortfolio: "Портфоліо",
+        navAi: "AI-Асистент",
+        navCases: "Кейси",
+        navProcess: "Процес",
+        navAbout: "Про мене",
+        navPricing: "Формати",
+        heroTitle: "Цифрові рішення для розвитку вашого бізнесу",
+        heroSubtitle: "Створюємо цифрові системи, які допомагають бізнесу виглядати авторитетно, залучати платоспроможних клієнтів та автоматизувати щоденну рутину без втрати лідів.",
+        heroBtnWorks: "Переглянути роботи",
+        heroBtnContact: "Обговорити проєкт",
+        stat1: "Мобільна адаптивність",
+        stat2: "AI Lead Assistant",
+        stat3: "Мультимовний контент",
+        stat4: "Розуміння цінності",
+        servicesTitle: "Комплексні послуги для вашого росту",
+        servicesSubtitle: "Від швидкого лендінгу до повної автоматизації прийому замовлень у Telegram та CRM.",
+        srvWebTitle: "Web Development",
+        srvWebDesc: "Сайти-візитівки, комерційні Landing Pages, промо-сторінки та каталоги для бізнесу.",
+        srvAiTitle: "AI Assistants",
+        srvAiDesc: "AI-консультанти, розумні Telegram-боти, автоматичні лід-магніти та кваліфікація клієнтів.",
+        srvAutoTitle: "Business Automation",
+        srvAutoDesc: "n8n та Make сценарії, миттєве надсилання сповіщень у чати, синхронізація з таблицями та CRM.",
+        srvDesignTitle: "Digital Design",
+        srvDesignDesc: "Преміальні логотипи, фірмовий стиль, кольорові палітри, банери та дизайн презентацій.",
+        probTitle: "Які проблеми бізнесу ми вирішуємо",
+        probSubtitle: "Порівняння типових болів підприємців із конкретними цифровими рішеннями KROK.",
+        prob1Title: "Відсутність сучасного сайту",
+        prob1Desc: "Клієнти йдуть до конкурентів через відсутність візуальної довіри або застарілий вигляд.",
+        sol1Title: "Швидкий преміальний веб-сайт",
+        sol1Desc: "Сучасний адаптивний SPA, що за 10 секунд чітко доносить цінність і формує статус експерта.",
+        prob2Title: "Повільна відповідь на звернення",
+        prob2Desc: "Клієнт чекає годинами в Direct чи месенджері, перегорає і купує в іншому місці.",
+        sol2Title: "Миттєвий AI Lead Assistant",
+        sol2Desc: "Бот відповідає за 2 секунди 24/7 за базою знань вашого бізнесу і забирає контакти.",
+        prob3Title: "Рутинне перенесення замовлень",
+        prob3Desc: "Власник вручну копіює контакти з чатів у таблиці та забуває про повторні нагадування.",
+        sol3Title: "Автоматизація через n8n & CRM",
+        sol3Desc: "Кожна заявка летить у ваш Telegram, зберігається у базі та отримує авто-follow-up через 6 годин.",
+        portTitle: "Вибрані проєкти та концепти",
+        portSubtitle: "Реальні рішення та демонстраційні концепти, чітко розмежовані за типом.",
+        aiTitle: "AI Lead Assistant у дії",
+        aiSubtitle: "Як наша система перетворює холодні звернення у закриті угоди без вашої постійної участі.",
+        casesTitle: "Детальні кейси та результати",
+        casesSubtitle: "Чесний опис завдань, стек технологій та фактичний результат для замовника.",
+        procTitle: "Як відбувається наша співпраця",
+        procSubtitle: "Зрозумілий 6-етапний процес без технічного хаосу та затягування дедлайнів.",
+        aboutTitle: "Хто стоїть за KROK Digital Studio",
+        aboutDesc: "Я інженер та digital-спеціаліст, який допомагає підприємцям будувати сучасну цифрову присутність. Мій підхід базується на трьох принципах: жодного шаблонного сміття, обов'язковий фокус на продажах і конверсії, та повна адаптивність на смартфонах.",
+        coopTitle: "Гнучкі формати співпраці",
+        coopSubtitle: "Оберіть відповідний тариф або отримайте індивідуальну пропозицію під вашу задачу.",
+        contactTitle: "Готові створити сильне рішення?",
+        contactSubtitle: "Напишіть напряму в Telegram або заповніть швидку форму для отримання пропозиції протягом дня."
+      },
+      en: {
+        navServices: "Services",
+        navProblems: "Solutions",
+        navPortfolio: "Portfolio",
+        navAi: "AI Assistant",
+        navCases: "Cases",
+        navProcess: "Process",
+        navAbout: "About",
+        navPricing: "Packages",
+        heroTitle: "Digital solutions for growing businesses",
+        heroSubtitle: "We build digital systems that help businesses project authority, capture high-value clients, and automate daily operations without losing leads.",
+        heroBtnWorks: "View Portfolio",
+        heroBtnContact: "Discuss Project",
+        stat1: "Mobile Responsiveness",
+        stat2: "AI Lead Assistant",
+        stat3: "4-Language Content",
+        stat4: "Value in < 15s",
+        servicesTitle: "End-to-End Digital Services",
+        servicesSubtitle: "From high-converting landing pages to full order automation in Telegram and CRM.",
+        srvWebTitle: "Web Development",
+        srvWebDesc: "Business websites, high-converting Landing Pages, and responsive product catalogs.",
+        srvAiTitle: "AI Assistants",
+        srvAiDesc: "Smart Telegram chatbots, lead-magnets, and 24/7 automated customer qualification.",
+        srvAutoTitle: "Business Automation",
+        srvAutoDesc: "n8n and Make workflows, instant chat alerts, and continuous CRM synchronization.",
+        srvDesignTitle: "Digital Design",
+        srvDesignDesc: "Premium logos, brand identity, color systems, and high-impact presentation decks.",
+        probTitle: "Business Problems We Solve",
+        probSubtitle: "Direct comparison between traditional business pain points and KROK digital solutions.",
+        prob1Title: "Lack of a Professional Website",
+        prob1Desc: "Clients migrate to competitors due to lack of visual trust or outdated interfaces.",
+        sol1Title: "High-Speed Premium Website",
+        sol1Desc: "Modern responsive SPA communicating your core value proposition within 10 seconds.",
+        prob2Title: "Slow Lead Response Times",
+        prob2Desc: "Prospects wait hours in chat, lose interest, and buy elsewhere.",
+        sol2Title: "Instant AI Lead Assistant",
+        sol2Desc: "Bot answers in 2 seconds 24/7 using your business knowledge base and grabs contact info.",
+        prob3Title: "Manual Data Entry Hassle",
+        prob3Desc: "Teams manually paste customer data into spreadsheets and forget follow-ups.",
+        sol3Title: "Automation with n8n & CRM",
+        sol3Desc: "Every inquiry pings Telegram, logs into CRM, and triggers automated follow-ups.",
+        portTitle: "Selected Projects & Concepts",
+        portSubtitle: "Real-world commercial builds and demo concepts clearly labeled for transparency.",
+        aiTitle: "AI Lead Assistant in Action",
+        aiSubtitle: "How our automated funnel converts inbound queries into qualified deals hands-free.",
+        casesTitle: "Detailed Case Studies",
+        casesSubtitle: "Real client objectives, architecture choices, and measurable business outcomes.",
+        procTitle: "Our Collaboration Workflow",
+        procSubtitle: "Clear 6-stage process with zero technical noise and strictly met milestones.",
+        aboutTitle: "Behind KROK Digital Studio",
+        aboutDesc: "I am a digital engineer helping business owners establish commanding online authority with bespoke design, conversion-focused copy, and flawless smartphone usability.",
+        coopTitle: "Cooperation Packages",
+        coopSubtitle: "Choose a pre-configured tier or request a custom quote tailored to your operational needs.",
+        contactTitle: "Ready to Build Something Great?",
+        contactSubtitle: "Reach out directly on Telegram or fill out the quick form for a quote within 24 hours."
+      },
+      bs: {
+        navServices: "Usluge",
+        navProblems: "Rješenja",
+        navPortfolio: "Portfolio",
+        navAi: "AI Asistent",
+        navCases: "Projekti",
+        navProcess: "Proces",
+        navAbout: "O meni",
+        navPricing: "Paketi",
+        heroTitle: "Digitalna rješenja za rast vašeg biznisa",
+        heroSubtitle: "Kreiramo digitalne sisteme koji pomažu firmama da izgledaju profesionalno, privuku klijente i automatizuju svakodnevne procese.",
+        heroBtnWorks: "Pogledaj radove",
+        heroBtnContact: "Dogovori projekat",
+        stat1: "Mobilna verzija 100%",
+        stat2: "AI Asistent 24/7",
+        stat3: "4 jezika sadržaja",
+        stat4: "Jasnoća za 15 sek",
+        servicesTitle: "Kompletne usluge za vaš rast",
+        servicesSubtitle: "Od brzih landing stranica do potpune automatizacije narudžbi u Telegramu i CRM-u.",
+        srvWebTitle: "Web Development",
+        srvWebDesc: "Poslovne web stranice, Landing Pages i online katalozi za preduzeća.",
+        srvAiTitle: "AI Asistenti",
+        srvAiDesc: "AI konsultanti, pametni Telegram botovi i automatska kvalifikacija klijenata.",
+        srvAutoTitle: "Automatizacija",
+        srvAutoDesc: "n8n i Make scenariji, trenutna obavještenja i sinhronizacija sa CRM-om.",
+        srvDesignTitle: "Digitalni Dizajn",
+        srvDesignDesc: "Premium logotipi, vizuelni identitet i dizajn prezentacija.",
+        probTitle: "Koje poslovne probleme rješavamo",
+        probSubtitle: "Poređenje čestih problema firmi sa konkretnim digitalnim rješenjima.",
+        prob1Title: "Nedostatak modernog sajta",
+        prob1Desc: "Kupci odlaze konkurenciji zbog nedostatka povjerenja u stari izgled.",
+        sol1Title: "Brz i moderan web sajt",
+        sol1Desc: "Responzivni SPA sajt koji za 10 sekundi jasno prenosi vašu vrijednost.",
+        prob2Title: "Spor odgovor na upite",
+        prob2Desc: "Klijent čeka satima na odgovor u porukama i ode drugdje.",
+        sol2Title: "Trenutni AI Asistent",
+        sol2Desc: "Bot odgovara za 2 sekunde 24/7 prema bazi znanja vašeg biznisa.",
+        prob3Title: "Ručni rad sa narudžbama",
+        prob3Desc: "Ručno prepisivanje kontakata u tabele i zaboravljeni follow-up.",
+        sol3Title: "n8n & CRM integracija",
+        sol3Desc: "Svaki upit odmah stiže u Telegram i bilježi se u bazu sa follow-upom.",
+        portTitle: "Odabrani radovi i koncepti",
+        portSubtitle: "Realni projekti i koncepti jasno razdvojeni po kategorijama.",
+        aiTitle: "AI Asistent u akciji",
+        aiSubtitle: "Kako naš sistem pretvara posjetioce u kupce bez vašeg stalnog prisustva.",
+        casesTitle: "Studije slučaja i rezultati",
+        casesSubtitle: "Iskren opis zadataka, tehnologija i postignutih rezultata.",
+        procTitle: "Kako izgleda saradnja",
+        procSubtitle: "Jasan proces u 6 koraka bez tehničkog stresa i kašnjenja.",
+        aboutTitle: "Ko stoji iza KROK Studija",
+        aboutDesc: "Ja sam inženjer i digitalni specijalista koji pomaže preduzetnicima da izgrade snažno digitalno prisustvo prilagođeno mobilnim telefonima.",
+        coopTitle: "Formati saradnje",
+        coopSubtitle: "Odaberite paket ili zatražite ponudu po vašoj mjeri.",
+        contactTitle: "Spremni za saradnju?",
+        contactSubtitle: "Pišite direktno na Telegram ili pošaljite kratak upit."
+      },
+      de: {
+        navServices: "Leistungen",
+        navProblems: "Lösungen",
+        navPortfolio: "Portfolio",
+        navAi: "KI-Assistent",
+        navCases: "Fallstudien",
+        navProcess: "Prozess",
+        navAbout: "Über mich",
+        navPricing: "Pakete",
+        heroTitle: "Digitale Lösungen für wachsende Unternehmen",
+        heroSubtitle: "Wir schaffen digitale Systeme, die Unternehmen autoritär präsentieren, qualifizierte Kunden anziehen und Routinen automatisieren.",
+        heroBtnWorks: "Arbeiten ansehen",
+        heroBtnContact: "Projekt anfragen",
+        stat1: "100% Mobile Ready",
+        stat2: "KI-Lead-Assistent",
+        stat3: "4 Sprachversionen",
+        stat4: "Klarheit in < 15s",
+        servicesTitle: "Ganzheitliche digitale Services",
+        servicesSubtitle: "Von performanten Landingpages bis zur vollständigen Auftragsautomatisierung.",
+        srvWebTitle: "Webentwicklung",
+        srvWebDesc: "Unternehmenswebsites, Landing Pages und digitale Produktkataloge.",
+        srvAiTitle: "KI-Assistenten",
+        srvAiDesc: "Intelligente Telegram-Bots, 24/7 Kundenberatung und Lead-Qualifizierung.",
+        srvAutoTitle: "Automatisierung",
+        srvAutoDesc: "n8n und Make Workflows, CRM-Integration und automatische Benachrichtigungen.",
+        srvDesignTitle: "Digitales Design",
+        srvDesignDesc: "Premium-Logos, Markenidentität, Farbkonzepte und Präsentationen.",
+        probTitle: "Geschäftsprobleme, die wir lösen",
+        probSubtitle: "Vergleich typischer Engpässe mit konkreten KROK-Lösungen.",
+        prob1Title: "Keine moderne Website",
+        prob1Desc: "Kunden wechseln zu Wettbewerbern wegen mangelnder visueller Glaubwürdigkeit.",
+        sol1Title: "Schnelle Premium-Website",
+        sol1Desc: "Moderner SPA, der innerhalb von 10 Sekunden den Kernwert vermittelt.",
+        prob2Title: "Langsame Antwortzeiten",
+        prob2Desc: "Interessenten warten stundenlang im Chat und kaufen woanders.",
+        sol2Title: "Sofortiger KI-Assistent",
+        sol2Desc: "Bot antwortet in 2 Sekunden 24/7 auf Basis Ihrer Unternehmensdaten.",
+        prob3Title: "Manuelle Datenübertragung",
+        prob3Desc: "Mitarbeiter tippen Kontakte ab und verpassen Follow-ups.",
+        sol3Title: "n8n & CRM Automation",
+        sol3Desc: "Jede Anfrage landet direkt im Telegram-Kanal und CRM-System.",
+        portTitle: "Ausgewählte Arbeiten & Konzepte",
+        portSubtitle: "Reale Kundenprojekte und Demo-Konzepte transparent aufgeführt.",
+        aiTitle: "KI-Lead-Assistent im Einsatz",
+        aiSubtitle: "Wie unser automatisierter Trichter Anfragen selbstständig in Abschlüsse wandelt.",
+        casesTitle: "Fallstudien & Ergebnisse",
+        casesSubtitle: "Echte Aufgabenstellungen, Tech-Stack und messbare Geschäftserfolge.",
+        procTitle: "Unser Projektablauf",
+        procSubtitle: "Klarer 6-Schritte-Prozess ohne Verzögerungen.",
+        aboutTitle: "Über KROK Digital Studio",
+        aboutDesc: "Ich bin Digital-Ingenieur und entwickle maßgeschneiderte Weblösungen und KI-Automatisierungen für anspruchsvolle Unternehmen.",
+        coopTitle: "Kooperationsformate",
+        coopSubtitle: "Wählen Sie ein Paket oder fordern Sie ein maßgeschneidertes Angebot an.",
+        contactTitle: "Bereit für den nächsten Schritt?",
+        contactSubtitle: "Schreiben Sie direkt auf Telegram oder senden Sie uns eine Anfrage."
+      }
+    };
+
+    let currentLang = 'ua';
+
+    function setLang(lang) {
+      currentLang = lang;
+      // Update pills visual state
+      ['ua', 'en', 'bs', 'de'].forEach(l => {
+        const btn = document.getElementById('btn-' + l);
+        if (btn) {
+          if (l === lang) {
+            btn.className = "px-2 py-0.5 rounded-full transition font-bold bg-brandAccent text-white";
+          } else {
+            btn.className = "px-2 py-0.5 rounded-full transition text-brandMuted hover:text-white";
+          }
+        }
+      });
+
+      // Update texts
+      const dict = translations[lang] || translations.ua;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          el.textContent = dict[key];
+        }
+      });
+    }
+
+    function toggleMobileNav() {
+      const menu = document.getElementById('mobile-menu');
+      if (menu) {
+        menu.classList.toggle('hidden');
+      }
+    }
+
+    function filterPortfolio(category) {
+      document.querySelectorAll('.port-filter-btn').forEach(btn => {
+        if (btn.getAttribute('data-cat') === category) {
+          btn.className = "port-filter-btn px-4 py-1.5 rounded-full text-xs font-bold transition bg-brandAccent text-white";
+        } else {
+          btn.className = "port-filter-btn px-4 py-1.5 rounded-full text-xs font-medium transition bg-brandCard text-brandMuted hover:text-white";
+        }
+      });
+
+      document.querySelectorAll('.port-card').forEach(card => {
+        if (category === 'all' || card.classList.contains(category)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function sendChatMessage() {
+      const input = document.getElementById('chat-input');
+      const container = document.getElementById('chat-messages');
+      if (!input || !container) return;
+      const text = input.value.trim();
+      if (!text) return;
+
+      // Add user message
+      const userMsg = document.createElement('div');
+      userMsg.className = "bg-brandAccent text-white p-2.5 rounded-xl rounded-tr-none ml-auto max-w-[80%]";
+      userMsg.textContent = text;
+      container.appendChild(userMsg);
+      input.value = '';
+
+      // Auto-reply simulation
+      setTimeout(() => {
+        const botMsg = document.createElement('div');
+        botMsg.className = "bg-[#241a20] p-2.5 rounded-xl rounded-tl-none max-w-[85%] text-slate-200 animate-fadeIn";
+        botMsg.innerHTML = "✅ Дякую за запитання! Для задачі «" + text.slice(0, 30) + "...» чудово підходить пакет <strong>BUSINESS</strong> з 10 блоками та Telegram-автоматизацією. Напишіть ваш контакт або в <a href='https://t.me/protos21' class='text-brandVibrant underline'>@protos21</a>!";
+        container.appendChild(botMsg);
+        container.scrollTop = container.scrollHeight;
+      }, 500);
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const toast = document.getElementById('form-toast');
+      if (toast) {
+        toast.classList.remove('hidden');
+        setTimeout(() => toast.classList.add('hidden'), 5000);
+      }
+    }
+  </script>
+  <script src="swarm-ui.js"></script>
+</body>
+</html>
