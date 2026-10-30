@@ -1,0 +1,14 @@
+{
+  "provider": "local-ollama",
+  "base_url_env": "LOCAL_LLM_BASE_URL",
+  "default_base_url": "http://127.0.0.1:11434",
+  "models": [
+    {"id":"qwen3:8b","role":"primary-rewrite","languages":["uk","en"],"strength":"мультимовне переписування, tone і структура","fallback_rank":1},
+    {"id":"phi4:latest","role":"reasoning-review","languages":["en","uk"],"strength":"логіка, технічне покращення та consistency","fallback_rank":2},
+    {"id":"smollm2:1.7b","role":"fast-fallback","languages":["en","uk"],"strength":"швидке локальне редагування і короткі чернетки","fallback_rank":3},
+    {"id":"deepseek-coder-v2:lite","role":"code-content","languages":["en","uk"],"strength":"технічний і кодовий контент","fallback_rank":4}
+  ],
+  "policy": "local_open_weight_only",
+  "paid_api": false,
+  "requires_human_review": true
+}

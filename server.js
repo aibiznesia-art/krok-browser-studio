@@ -3,6 +3,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { URL } = require('node:url');
 const { REGISTRY, runSkills } = require('./skills/local-skills');
+const { registry: localModelRegistry, models: localModels, baseUrl: localLlmBaseUrl, rewriteLocally } = require('./local-llm');
 
 const PORT = Number(process.env.PORT || 3000);
 const ROOT = __dirname;
@@ -146,7 +147,11 @@ function serveStatic(req, res, pathname) {
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
   if (req.method === 'GET' && url.pathname === '/api/health') {
-    send(res, 200, { ok: true, adapter: 'manus-built-in-llm', model: MODEL, local_skills: REGISTRY.skills.length, token_cost: 0 });
+    send(res, 200, { ok: true, adapter: 'manus-built-in-llm', model: MODEL, local_skills: REGISTRY.skills.length, local_rewrite: { provider: localModelRegistry.provider, models: localModels, base_url: localLlmBaseUrl, paid_api: false }, token_cost: 0 });
+    return;
+  }
+  if (req.method === 'GET' && url.pathname === '/api/models/local') {
+    send(res, 200, { ok: true, ...localModelRegistry, models: localModelRegistry.models.map((item) => ({ ...item, enabled: localModels.includes(item.id) })), base_url: localLlmBaseUrl, paid_api: false });
     return;
   }
   if (req.method === 'GET' && url.pathname === '/api/skills') {
@@ -184,6 +189,23 @@ const server = http.createServer(async (req, res) => {
       } catch (error) {
         const status = error.code === 'LLM_NOT_CONFIGURED' ? 503 : 502;
         send(res, status, { ok: false, error: error.message, code: error.code || 'LLM_ERROR' });
+      }
+    });
+    return;
+  }
+  if (req.method === 'POST' && url.pathname === '/api/content/rewrite') {
+    let body = '';
+    req.on('data', (chunk) => {
+      body += chunk;
+      if (body.length > MAX_BODY) req.destroy();
+    });
+    req.on('end', async () => {
+      try {
+        const input = JSON.parse(body || '{}');
+        const content = await rewriteLocally(input);
+        send(res, 200, { ok: true, content });
+      } catch (error) {
+        send(res, error.code === 'LOCAL_LLM_UNAVAILABLE' ? 503 : 502, { ok: false, error: error.message, code: error.code || 'LOCAL_LLM_ERROR', attempts: error.attempts || [] });
       }
     });
     return;
