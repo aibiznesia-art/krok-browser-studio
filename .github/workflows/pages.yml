@@ -9,9 +9,13 @@ on:
         description: 'Simple-language request for the swarm'
         required: false
         default: 'перевір публічні джерела'
+      topic:
+        description: 'Topic for generated website content'
+        required: false
+        default: 'актуальні цифрові рішення для бізнесу'
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -32,10 +36,27 @@ jobs:
           ! grep -RInE 'sk-[A-Za-z0-9]|ghp_[A-Za-z0-9]|AIza[A-Za-z0-9_-]{20,}|password[[:space:]]*=' . --exclude-dir=.git
       - name: Run demo orchestrator
         run: python agents/orchestrator.py "${{ inputs.request || 'перевір публічні джерела' }}"
+      - name: Collect public social sources
+        run: python agents/social_sources.py social-sources.json > artifacts/social-results.json
+      - name: Generate cited content draft
+        env:
+          CONTENT_TOPIC: ${{ inputs.topic || 'актуальні цифрові рішення для бізнесу' }}
+        run: python agents/content_pipeline.py artifacts/social-results.json
       - uses: actions/upload-artifact@v4
         with:
           name: swarm-result
-          path: artifacts/swarm-result.json
+          path: artifacts/
+
+      - name: Commit generated content draft
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name 'krok-agent-swarm[bot]'
+          git config user.email 'krok-agent-swarm[bot]@users.noreply.github.com'
+          mkdir -p generated
+          cp artifacts/generated-content.json generated/latest-content.json
+          git add generated/latest-content.json
+          git commit -m "chore: update generated content draft" || echo 'No content changes'
+          git push
 
   deploy:
     needs: validate

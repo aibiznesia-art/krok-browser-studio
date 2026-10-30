@@ -1,0 +1,10 @@
+{
+  "sources": [
+    {
+      "kind": "youtube_rss_or_public_feed",
+      "url": "https://www.youtube.com/feeds/videos.xml?channel_id=REPLACE_WITH_PUBLIC_CHANNEL_ID",
+      "private": false
+    }
+  ],
+  "notes": "Replace only with public URLs or official API-backed feeds. X requires its own paid API credentials; Telegram bots only see content available to the bot in chats/channels where it is permitted."
+}
