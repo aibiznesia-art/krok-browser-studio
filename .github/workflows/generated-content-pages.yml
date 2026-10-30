@@ -1,0 +1,32 @@
+name: Generate content and deploy to GitHub Pages
+on:
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: Public topic for the content draft
+        required: false
+        default: KROK Agent Swarm
+  schedule:
+    - cron: '0 8 * * 1'
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build public-source content draft
+        env:
+          TOPIC: ${{ inputs.topic || 'KROK Agent Swarm' }}
+        run: python agents/content_pipeline.py "$TOPIC"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: generated-content
+          path: generated/latest-content.json
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - uses: actions/deploy-pages@v4

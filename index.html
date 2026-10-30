@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="KROK Browser Studio — робоча область для керування роями агентів." />
+  <title>KROK Browser Studio</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand-lockup"><div class="brand-mark">K<span>↘</span></div><div><div class="eyebrow">KROK / AGENT SWARM</div><h1>Browser Studio</h1></div></div>
+      <div class="topbar-actions"><span class="secure-chip"><i></i> local demo · токени не зберігаються</span><button class="button button-quiet" id="githubButton">GitHub Pages <span>↗</span></button></div>
+    </header>
+    <main>
+      <section class="hero-row">
+        <div><div class="eyebrow accent">CONTROL ROOM 01</div><h2>Перетворіть задум<br /><em>на наступний крок.</em></h2><p class="hero-copy">Керуйте ройом, редагуйте результат і перевіряйте його наживо — в одному робочому місці.</p></div>
+        <div class="command-card"><div class="card-label"><span class="pulse"></span> КОМАНДА ДЛЯ РОЮ</div><label for="command">Що потрібно зробити?</label><div class="command-input"><input id="command" value="Зібрати чистий hero-блок для KROK" /><button class="button button-primary" id="runButton">Запустити <span>→</span></button></div><div class="command-meta"><span>Мова: українська</span><span>Режим: demo</span><span id="runState">готовий</span></div></div>
+      </section>
+      <section class="metrics"><div><span class="metric-value" id="metricStatus">READY</span><span class="metric-label">стан рою</span></div><div><span class="metric-value">06</span><span class="metric-label">ролей онлайн</span></div><div><span class="metric-value" id="metricSources">03</span><span class="metric-label">відкриті джерела</span></div><div class="metric-note"><span class="dot dot-lime"></span> людина залишається у контурі перевірки</div></section>
+      <section class="workspace" id="workspace">
+        <article class="panel panel-code" data-panel="code"><div class="panel-head"><div class="panel-title"><span class="panel-index">01</span><div><div class="eyebrow">EDIT / TEXT</div><h3>Код / текст</h3></div></div><div class="panel-actions"><button class="icon-button" data-collapse="code" title="Згорнути">−</button><button class="icon-button" data-fullscreen="code" title="На весь екран">⛶</button></div></div><div class="panel-body code-body"><div class="editor-toolbar"><span class="file-tab"><span class="file-dot"></span> index.html</span><span class="save-state" id="saveState">чернетка збережена</span></div><textarea id="codeEditor" spellcheck="false"><section class="preview-hero">
+  <span class="preview-kicker">KROK / STUDIO</span>
+  <h1>Складне стає<br><em>наступним кроком.</em></h1>
+  <p>Редагуйте цей текст у Browser Studio — результат зʼявиться праворуч одразу після застосування.</p>
+  <button>Почати з ідеї <span>→</span></button>
+</section></textarea><div class="editor-footer"><span><kbd>⌘</kbd> + S зберігає чернетку</span><button class="button button-apply" id="applyButton">Застосувати правки <span>↗</span></button></div></div></article>
+        <article class="panel panel-agents" data-panel="agents"><div class="panel-head"><div class="panel-title"><span class="panel-index">02</span><div><div class="eyebrow">ORCHESTRATION / LIVE</div><h3>Взаємодія агентів</h3></div></div><div class="panel-actions"><span class="live-badge"><i></i> LIVE</span><button class="icon-button" data-collapse="agents" title="Згорнути">−</button><button class="icon-button" data-fullscreen="agents" title="На весь екран">⛶</button></div></div><div class="panel-body agents-body"><div class="agent-list" id="agentList"></div><div class="agent-log" id="agentLog"><span class="log-time">20:37:28</span><span>Система готова прийняти команду.</span></div><div class="agent-controls"><button class="button button-quiet" id="pauseButton">Ⅱ Пауза</button><button class="button button-primary" id="continueButton" disabled>▶ Продовжити</button></div></div></article>
+        <article class="panel panel-preview" data-panel="preview"><div class="panel-head"><div class="panel-title"><span class="panel-index">03</span><div><div class="eyebrow">OUTPUT / SANDBOXED</div><h3>Візуальний preview</h3></div></div><div class="panel-actions"><span class="preview-status"><i></i> застосовано щойно</span><button class="icon-button" data-collapse="preview" title="Згорнути">−</button><button class="icon-button" data-fullscreen="preview" title="На весь екран">⛶</button></div></div><div class="panel-body preview-body"><div class="preview-frame-wrap"><iframe id="previewFrame" title="Живий візуальний preview" sandbox="allow-scripts"></iframe><div class="frame-overlay"><span>iframe / sandboxed</span><span>1280 × auto</span></div></div><div class="preview-footer"><span><span class="dot dot-cyan"></span> preview оновлюється локально</span><button class="text-button" id="resetButton">Скинути демо</button></div></div></article>
+      </section>
+      <section class="safety-strip"><div class="safety-icon">✓</div><div><strong>Безпечний контур</strong><span>GitHub-токен ніколи не потрапляє в браузер. Публікація проходить через server-side workflow, а дослідницькі джерела — лише відкриті URL, RSS або офіційні API.</span></div><span class="safety-link">політика доступу ↗</span></section>
+    </main>
+    <footer><span>KROK Browser Studio <b>v0.1 demo</b></span><span>У контурі: диспетчер · дослідник · аналітик · розробник · перевіряльник · видавець</span></footer>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>

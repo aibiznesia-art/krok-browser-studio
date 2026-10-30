@@ -1,0 +1,33 @@
+name: Deploy KROK to GitHub Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  validate-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate HTML and secrets
+        run: |
+          test -s index.html
+          python - <<'PY'
+          from pathlib import Path
+          text = Path('index.html').read_text()
+          assert '<html' in text and '</html>' in text
+          for path in Path('.').rglob('*'):
+              if path.is_file() and path.stat().st_size < 2_000_000:
+                  raw = path.read_text(errors='ignore')
+                  assert 'ghp_' not in raw and 'github_pat_' not in raw and 'BEGIN PRIVATE KEY' not in raw
+          PY
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - uses: actions/deploy-pages@v4

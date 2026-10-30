@@ -1,0 +1,7 @@
+{
+  "sources": [
+    {"name": "Example RSS", "url": "https://example.com/public-feed.xml", "type": "rss", "access": "public"},
+    {"name": "Official API placeholder", "url": "https://api.example.com/v1/public", "type": "official-api", "access": "public"}
+  ],
+  "policy": "Only public URLs, RSS, and permitted official APIs. No private pages, CAPTCHA, paywall, robots.txt bypass, or sensitive personal data."
+}

@@ -1,0 +1,23 @@
+{
+  "topic": "KROK Browser Studio",
+  "received_at": "2026-10-30T19:47:48.594899+00:00",
+  "human_review_required": true,
+  "policy": "public-open-sources-only",
+  "facts": [
+    {
+      "fact": "This is a draft assembled from configured public source references.",
+      "source_url": "https://example.com/public-feed.xml",
+      "source_name": "Example RSS",
+      "received_at": "2026-10-30T19:47:48.594899+00:00",
+      "open_source": true
+    },
+    {
+      "fact": "This is a draft assembled from configured public source references.",
+      "source_url": "https://api.example.com/v1/public",
+      "source_name": "Official API placeholder",
+      "received_at": "2026-10-30T19:47:48.594899+00:00",
+      "open_source": true
+    }
+  ],
+  "note": "No private access, login bypass, CAPTCHA, paywall, robots.txt bypass, or social publishing is performed."
+}
