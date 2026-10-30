@@ -1,11 +1,9 @@
 
 
-## Оновлення v0.7 — local skills без токенів
+## Оновлення v0.8 — GitHub Actions pre-deploy gate
 
-- [x] Створено allowlisted registry із шістьма локальними навичками та `token_cost: 0`.
-- [x] Додано deterministic handlers для HTML, JavaScript/Python syntax, secrets, SEO, public-only sources і GitHub Actions.
-- [x] Додано `GET /api/skills` для discovery та `POST /api/skills/run` для запуску skills.
-- [x] Додано Browser Studio panel `LOCAL SKILLS / 0 TOKENS` з PASS/CHECK evidence.
-- [x] Smoke test підтвердив `execution: local-deterministic`, `token_cost: 0`, 6 skills і 4/6 PASS.
-- [x] Попередження SEO про відсутні `robots.txt`/`sitemap.xml` залишено як чесний release gate; ці файли генеруються підтвердженим Pages workflow.
-- [x] Workflow audit виправлено так, щоб шаблони secret scanner не створювали false positive.
+- [x] Створено `skills/run-ci.js`, який запускає шість локальних навичок і повертає exit code 1 при помилці.
+- [x] Додано gate у `.github/workflows/pages.yml` перед `upload-pages-artifact` і `deploy-pages`.
+- [x] Додано SEO generation перед gate у `.github/workflows/generated-content-pages.yml`, щоб robots/sitemap перевірялися без false failure.
+- [x] Перевірено локально: `6/6 PASS`, `token_cost=0`.
+- [x] Gate не потребує GitHub або AI secrets.

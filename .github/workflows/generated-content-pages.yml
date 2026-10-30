@@ -40,6 +40,16 @@ jobs:
       - name: Generate cited content draft
         run: python agents/content_pipeline.py artifacts/social-results.json
 
+      - name: Generate SEO files for the static artifact
+        env:
+          COMPANY_NAME: KROK Studio
+          SITE_SLUG: ${{ github.event.repository.name }}
+          SITE_ORIGIN: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
+        run: python agents/prepare_seo.py
+
+      - name: Run local skills gate — zero token cost
+        run: node skills/run-ci.js
+
       - name: Build Pages directory
         run: |
           rm -rf site-dist
