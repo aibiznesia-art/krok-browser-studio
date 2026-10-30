@@ -3,10 +3,22 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-permissions:
-  contents: read
-  pages: write
-  id-token: write
+    inputs:
+      company_name:
+        description: Public company/site name
+        required: true
+        default: KROK Studio
+      site_slug:
+        description: Lowercase repository/site slug, e.g. krok-studio
+        required: true
+        default: krok-studio
+      site_origin:
+        description: Canonical HTTPS origin, e.g. https://owner.github.io/krok-studio/
+        required: false
+      confirm_publish:
+        description: Type PUBLISH to confirm deployment
+        required: true
+        default: PUBLISH
 jobs:
   validate-and-deploy:
     runs-on: ubuntu-latest
@@ -14,18 +26,33 @@ jobs:
       name: github-pages
     steps:
       - uses: actions/checkout@v4
+      - name: Validate publication confirmation and slug
+        env:
+          COMPANY_NAME: ${{ inputs.company_name || 'KROK Studio' }}
+          SITE_SLUG: ${{ inputs.site_slug || github.event.repository.name }}
+          CONFIRM_PUBLISH: ${{ inputs.confirm_publish || 'PUBLISH' }}
+        run: |
+          test -n "$COMPANY_NAME"
+          test "$CONFIRM_PUBLISH" = "PUBLISH"
+          printf '%s' "$SITE_SLUG" | grep -Eq '^[a-z0-9]+([.-][a-z0-9]+)*$'
       - name: Validate HTML and secrets
         run: |
           test -s index.html
           python - <<'PY'
           from pathlib import Path
           text = Path('index.html').read_text()
-          assert '<html' in text and '</html>' in text
+          assert '<html' in text and '</html>' in text and '<h1' in text
           for path in Path('.').rglob('*'):
-              if path.is_file() and path.stat().st_size < 2_000_000:
+              if path.is_file() and path.stat().st_size < 2_000_000 and '.git' not in path.parts and '.github' not in path.parts:
                   raw = path.read_text(errors='ignore')
                   assert 'ghp_' not in raw and 'github_pat_' not in raw and 'BEGIN PRIVATE KEY' not in raw
           PY
+      - name: Generate SEO files from confirmed origin
+        env:
+          COMPANY_NAME: ${{ inputs.company_name || 'KROK Studio' }}
+          SITE_SLUG: ${{ inputs.site_slug || github.event.repository.name }}
+          SITE_ORIGIN: ${{ inputs.site_origin || format('https://{0}.github.io/{1}/', github.repository_owner, github.event.repository.name) }}
+        run: python agents/prepare_seo.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
