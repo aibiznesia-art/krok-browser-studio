@@ -1,11 +1,10 @@
 
 
-## Оновлення v0.3
+## Оновлення v0.4
 
-- [x] Додано чергу відкритих HTTPS-URL конкурентів із підтвердженням public-only режиму.
-- [x] Додано персональний бриф із локальним збереженням і попередженням про секрети та приватні дані.
-- [x] Додано локальне завантаження фото/відео з browser preview metadata та rights confirmation для публічних URL.
-- [x] Додано імпорт текстового HTML/CSS/JS/TXT і вивантаження поточної HTML-чернетки.
-- [x] Додано політику competitor/media та опис production server-side адаптера.
-- [ ] Підключити server-side fetcher для дозволених публічних джерел через офіційні API/feeds із rate-limit і ліцензійною перевіркою.
-- [ ] Підключити production storage/upload endpoint для user media після окремого підтвердження та налаштування secrets.
+- [x] Додано блок «Соцмережі → чернетка контенту» з URL/RSS, типом джерела і темою.
+- [x] Demo зберігає URL, `retrieved_at`, тип і `requires_human_review`.
+- [x] Синхронізовано `agents/social_sources.py` і `agents/content_pipeline.py` з оновленого репозиторію.
+- [x] Синхронізовано `generated-content-pages.yml` і адаптовано копіювання файлів під KROK Browser Studio.
+- [x] Додано `SOCIAL-SOURCES.md` та налаштування `social-sources.json`.
+- [ ] Замінити demo-збір на підключення server-side AI/API adapter із секретами GitHub Actions.
