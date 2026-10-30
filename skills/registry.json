@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "execution": "local-deterministic",
+  "token_cost": 0,
+  "skills": [
+    {"id":"html_validate","name":"HTML validator","category":"quality","role":"QA-автоматизатор","description":"Перевіряє doctype, базову HTML-структуру, title та h1."},
+    {"id":"code_syntax","name":"Code syntax check","category":"quality","role":"Розробник","description":"Запускає node --check для JavaScript та py_compile для Python-агентів."},
+    {"id":"secret_scan","name":"Secret scan","category":"security","role":"Security reviewer","description":"Шукає ключі, приватні ключі та небезпечні значення поза дозволеними шаблонами."},
+    {"id":"seo_check","name":"SEO readiness","category":"seo","role":"SEO-перевіряльник","description":"Перевіряє SEO meta, robots, sitemap, canonical і маршрутну декларацію."},
+    {"id":"source_policy","name":"Open-source policy","category":"research","role":"Дослідник","description":"Перевіряє URL соціальних джерел на HTTPS, public-only та заборону private/loopback адрес."},
+    {"id":"workflow_audit","name":"GitHub workflow audit","category":"release","role":"Видавець","description":"Перевіряє Pages workflow, pinned action majors, secret boundary і human confirmation gate."}
+  ]
+}

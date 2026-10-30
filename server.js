@@ -2,6 +2,7 @@ const http = require('node:http');
 const fs = require('node:fs');
 const path = require('node:path');
 const { URL } = require('node:url');
+const { REGISTRY, runSkills } = require('./skills/local-skills');
 
 const PORT = Number(process.env.PORT || 3000);
 const ROOT = __dirname;
@@ -145,7 +146,28 @@ function serveStatic(req, res, pathname) {
 const server = http.createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
   if (req.method === 'GET' && url.pathname === '/api/health') {
-    send(res, 200, { ok: true, adapter: 'manus-built-in-llm', model: MODEL });
+    send(res, 200, { ok: true, adapter: 'manus-built-in-llm', model: MODEL, local_skills: REGISTRY.skills.length, token_cost: 0 });
+    return;
+  }
+  if (req.method === 'GET' && url.pathname === '/api/skills') {
+    send(res, 200, { ok: true, execution: REGISTRY.execution, token_cost: REGISTRY.token_cost, skills: REGISTRY.skills });
+    return;
+  }
+  if (req.method === 'POST' && url.pathname === '/api/skills/run') {
+    let body = '';
+    req.on('data', (chunk) => {
+      body += chunk;
+      if (body.length > MAX_BODY) req.destroy();
+    });
+    req.on('end', () => {
+      try {
+        const input = JSON.parse(body || '{}');
+        const results = runSkills(input.skills, { urls: Array.isArray(input.urls) ? input.urls.slice(0, 50) : [] });
+        send(res, 200, { ok: true, execution: REGISTRY.execution, token_cost: 0, results });
+      } catch (error) {
+        send(res, 400, { ok: false, error: error.message, code: 'SKILL_REQUEST_INVALID' });
+      }
+    });
     return;
   }
   if (req.method === 'POST' && url.pathname === '/api/content/generate') {
