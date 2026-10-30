@@ -26,6 +26,10 @@ jobs:
       name: github-pages
     steps:
       - uses: actions/checkout@v4
+      - name: Run offline scraper tests
+        run: python3 -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Validate competitor robots policy
+        run: python3 agents/validate_robots.py competitor-sources.json
       - name: Validate publication confirmation and slug
         env:
           COMPANY_NAME: ${{ inputs.company_name || 'KROK Studio' }}

@@ -18,6 +18,10 @@ jobs:
     steps:
       - name: Checkout research code
         uses: actions/checkout@v4
+      - name: Run offline scraper tests
+        run: python3 -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Validate competitor robots policy
+        run: python3 agents/validate_robots.py competitor-sources.json
       - name: Run standard-library public-only scanner
         run: |
           python3 -m py_compile agents/competitor_scan.py
